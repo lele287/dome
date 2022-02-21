@@ -1,0 +1,112 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  // min-width: 1360px;
+  // min-height: 650px;
+  position: relative;
+  overflow: hidden;
+}
+.min-con {
+  min-width: 1360px;
+  min-height: 650px;
+}
+
+.iconfont {
+  cursor: pointer;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 4px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px #ccc;
+  background: #ccc;
+}
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px #f1f1f1;
+  border-radius: 0;
+  background: #f1f1f1;
+}
+
+* {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.leaflet-container {
+  background: #ebeef2;
+}
+
+.se-disabled {
+  pointer-events: none;
+  * {
+    color: #cccccc !important;
+  }
+}
+
+// >>> 公共样式
+.setbg(@url:"") {
+  background: url(@url) center center no-repeat;
+  background-size: 100% 100%;
+}
+
+// flex
+.flex(@direction:row,@hor:flex-start,@ver:flex-start,@wrap:nowrap) {
+  display: flex;
+  flex-direction: @direction;
+  justify-content: @hor;
+  align-items: @ver;
+  flex-wrap: @wrap;
+}
+
+// 定位居中
+.posCenter() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 浮动与清除浮动
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+/* 省略号 */
+.lines(@n) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: @n;
+}
+
+.line {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

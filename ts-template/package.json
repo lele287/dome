@@ -1,0 +1,51 @@
+{
+  "name": "ts-template",
+  "version": "0.1.0",
+  "description": "ts通用模板",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "axios": "^0.21.1",
+    "core-js": "^3.13.1",
+    "html2canvas": "^1.1.4",
+    "local-storage": "^2.0.0",
+    "moment": "^2.29.1",
+    "proj4": "^2.7.5",
+    "qs": "^6.10.1",
+    "uuid": "^8.3.2",
+    "view-design": "^4.5.0",
+    "vue": "^2.6.13",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2",
+    "vue-router": "^3.5.1",
+    "vuescroll": "^4.17.3",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@types/shapefile": "^0.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-plugin-router": "^4.5.13",
+    "@vue/cli-plugin-typescript": "^4.5.13",
+    "@vue/cli-plugin-vuex": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "babel-plugin-import": "^1.13.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.13.1",
+    "less-loader": "^5.0.0",
+    "prettier": "^2.3.0",
+    "typescript": "^4.1.5",
+    "vue-template-compiler": "^2.6.13"
+  }
+}
