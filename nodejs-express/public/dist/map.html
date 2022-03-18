@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset='utf-8' />
+   <title>Display a map</title>
+   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>;
+   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css'; rel='stylesheet' />
+   <style>
+       body { margin:0; padding:0; }
+       #map { position:absolute; top:0; bottom:0; width:100%; }
+   </style>
+</head>
+<body>
+
+
+<div id='map'></div>
+<script>
+   //使用注册Mapbox时候后台自动生成的token
+   mapboxgl.accessToken = 'pk.eyJ1IjoibGVsZTI4NyIsImEiOiJja3N0eWNuYmUwc3p4MnZtbHlpcW14Ynp5In0.vUXbDCIgGioRgs1VBTLhjg'
+   var map = new mapboxgl.Map({
+       container: 'map', // 放置的div的id
+       style: 'mapbox://styles/mapbox/streets-v9', // mapbox后台生成的style样式
+       center: [107.88, 24.57],// 地图显示中心点位置
+       zoom: 7,// 开始的缩放级别
+       maxZoom: 16
+   });
+
+
+   map.on('load', function() {
+       //访问本地的服务器
+       var city_tile_source = {
+           type: 'vector',
+           tiles: [
+               'http://localhost:3000/map/tiles/{z}/{x}/{y}.pbf'
+           ],
+           maxzoom: 16
+       };
+       var city_polygon_layer = {
+           'id': 'city_polygon_id',
+           'type': 'fill',
+           'source': 'city_tile_source',
+           'source-layer': 'hechi',
+           'paint': {
+               "fill-color": "#00ffff",
+               "fill-opacity": 0,
+               "fill-outline-color": "#ff0000"
+           }
+       };
+       var city_normal_line_layer = {
+           'id': 'city_normal_line_id',
+           'type': 'line',
+           'source': 'city_tile_source',
+           'source-layer': 'hechi',
+           'layout': {
+               'line-join': 'round',
+               'line-cap': 'round'
+           },
+           'paint': {
+               "line-color": "#0000ff",
+               "line-width": 2
+           }
+       };
+       var city_select_line_layer = {
+           'id': 'city_select_line_id',
+           'type': 'line',
+           'source': 'city_tile_source',
+           'source-layer': 'hechi',
+           'layout': {
+               'line-join': 'round',
+               'line-cap': 'round'
+           },
+           'paint': {
+               "line-color": "#ff0000",
+               "line-width": 2
+           },
+           "filter": ["==", "OBJECTID", ""]
+       };
+       map.addSource('city_tile_source', city_tile_source);
+       map.addLayer(city_polygon_layer);
+       map.addLayer(city_normal_line_layer);
+       map.addLayer(city_select_line_layer);
+   });
+
+
+   map.on('click', function(e) {
+       map.setFilter("city_select_line_id", ["==", "OBJECTID", ""])
+       var features = map.queryRenderedFeatures(e.point, {
+           layers: ['city_polygon_id']
+       });
+       if (!features.length) {
+           return;
+       }
+
+
+       var feature = features[0];
+       for (var key in feature.properties) {
+           console.log("key is: " + key + ", value is: " + feature.properties[key])
+       }
+       map.setFilter("city_select_line_id", ["==", "OBJECTID", feature.properties.OBJECTID])
+       var popup = new mapboxgl.Popup()
+           .setLngLat(e.lngLat)
+           .setHTML("<p>"+ feature.properties.QH_NAME+"</p>")
+           .addTo(map);
+   });
+
+
+</script>
+</body>
+</html>

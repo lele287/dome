@@ -8,8 +8,19 @@ var bodyParser = require("body-parser");
 var routes = require("./routes/index");
 var users = require("./routes/users");
 var upload = require("./routes/upload.js");
+var map = require("./routes/map.js");
 
 var app = express();
+
+//设置跨域访问
+app.all("*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); //*表示允许的域名地址，本地则为'http://localhost'
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By", " 3.2.1");
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +38,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", routes);
 app.use("/users", users);
 app.use("/upload", upload);
+app.use("/map", map);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -57,16 +69,6 @@ app.use(function (err, req, res, next) {
     message: err.message,
     error: {},
   });
-});
-
-//设置跨域访问
-app.all("*", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); //*表示允许的域名地址，本地则为'http://localhost'
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By", " 3.2.1");
-  res.header("Content-Type", "application/json;charset=utf-8");
-  next();
 });
 
 module.exports = app;

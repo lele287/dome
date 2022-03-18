@@ -14,7 +14,9 @@
     "morgan": "~1.7.0",
     "multer": "^1.4.4",
     "nodemon": "^2.0.15",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "node-mbtiles": "^1.0.2",
+    "tilelive": "^5.12.3"
   },
   "devDependencies": {
     "mysql": "^2.11.1"
