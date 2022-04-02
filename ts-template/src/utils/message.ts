@@ -1,3 +1,5 @@
+//忽略全文
+// @ts-nocheck
 import { Message } from "view-design";
 /***
  * @description 成功提示信息

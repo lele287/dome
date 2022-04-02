@@ -27,11 +27,11 @@ var APP_CONFIG = {
     subUrl: "/seuser/v1/api",
   },
   rasterService: {
-    host: "http://192.168.1.145:9090", //影像服务主机
+    host: "http://117.50.59.68:9090", //影像服务主机
     subUrl: "/seraster/v1",
   },
   rasterManage: {
-    host: "http://192.168.1.145:9080", //影像管理主机
+    host: "http://117.50.59.68:9080", //影像管理主机
     subUrl: "/seraster/v1/api",
   },
   vectorService: {
